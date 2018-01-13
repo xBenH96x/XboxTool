@@ -3,8 +3,18 @@
 
 		include 'dataSource.php';
 
-//var_dump($apiResultData);die;
+
+
+//var_dump ($apiResultData);die;
+
+
+
+
+
+
 				foreach ($apiResultData['activityItems'] as $item) {
+
+					//var_dump ($item);die;
 
 			//print "==========================";
 			//print PHP_EOL;
@@ -17,9 +27,14 @@
 
 	if (!empty($item['downloadUri'])) {
 
+
+
+
+
 		echo '<table>';
 		echo ' <p>Clip Author: ' . $authorInfo['authorInfo'] . '<tr>';
-		echo '<a href="' . ($item['downloadUri']) . '" target="_blank">Clip</a>';
+		//echo '<a href="' . ($item['downloadUri']) . '" target="_blank">Clip</a>';
+		echo '<video src= "' . $item['downloadUri'] . '" controls></video>';
 		echo '</table>';
 		echo '   </tr>';
 
