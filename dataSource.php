@@ -10,7 +10,31 @@ $apiResult = curl_exec($ch);
 
 curl_close($ch);
 
+//var_dump($apiResult);die;
+
+
+
+//$apiResultData = json_encode ($apiResult, true);
+
 $apiResultData = json_decode ($apiResult, true);
 $cutDownArray = array_slice($apiResultData, 0, 10);
+
+
+//$sauce = json_encode($apiResultData);
+
+//echo $apiResultData;die;
+
+//var_dump($apiResultData);
+
+//$length = count($apiResultData);
+
+//for ($i=0; $i < $length ; $i++) {
+
+//print_r ($apiResultData[$i]);
+
+
+//}
+
+//($apiResultData);
 
  ?>
