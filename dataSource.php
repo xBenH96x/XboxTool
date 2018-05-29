@@ -2,7 +2,7 @@
 
 $ch = curl_init ("https://xboxapi.com/v2/2533274839055677/game-clips");
 
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-AUTH: e5dd6ea7e64f0ba9ba2b61031a571ac961a6f6e4']);
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['X-AUTH: HIDDEN']);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
