@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/bootstrap.css">
+  <meta charset="utf-8">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="/jquery.simplePagination.js"></script>
+  <script src="https://vjs.zencdn.net/7.0.3/video.js"></script>
+  <!-- NAVBAR STUFF-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Xbox Clips</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+          <!---  <a class="nav-link" href="#">Link</a>---->
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="page2.php">Search Your Clips</a>
+              <a class="dropdown-item" href="#">Donate</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Contact</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <!--<a class="nav-link disabled" href="#">Disabled</a>--->
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+</head>
+<body>
+  <div class="container" style="border:1px solid red;">
+    <h2 class="text-center" style="color: red"> Benjaminski's Super Awesome Xbox Clips</h2>
+    <h2 style="colour: red"</h2>
+
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+      <p> This is some stuff</p>
+
+<div id="row_custom" ></div>
+
+
+  </div>
+
+
+<script>
+
+var VIDEO = [];
+
+
+        $.ajax({
+         type: "POST",
+         url: "dataSource.php",
+         data: "",
+         dataType: "json",
+         success: function(response){
+          console.log(response);
+
+           $.each(response, function(index, value){
+
+             VIDEO.push(value);
+
+           });
+
+
+}});
+
+var isLoaded = false;
+$(window).scroll(function () {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+        var total = VIDEO.length;
+        if (!isLoaded)
+        {
+          for (var i = 0; i < total; i++) {
+            if (i === total - 1) {
+              isLoaded = true;
+              return;
+            } else {
+
+              //var time = new Date(VIDEO[i].datePublished);
+
+              jQuery(function() {
+                    var shortDateFormat = 'dd/MM/yyyy';
+                    var longDateFormat  = 'dd-MM-yyyy HH:mm:ss';
+
+                    jQuery(".shortDateFormat").each(function (idx, elem) {
+                        if (jQuery(elem).is(":input")) {
+                            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), shortDateFormat));
+                        } else {
+                            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), shortDateFormat));
+                        }
+                    });
+                    jQuery(".longDateFormat").each(function (idx, elem) {
+                        if (jQuery(elem).is(":input")) {
+                            jQuery(elem).val(jQuery.format.date(jQuery(elem).val(), longDateFormat));
+                        } else {
+                            jQuery(elem).text(jQuery.format.date(jQuery(elem).text(), longDateFormat));
+                        }
+                    });
+                });
+
+//console.log(VIDEO[i].datePublished);
+              $("#row_custom").append('<div class="row justify-content-center"><div class="text-center"><strong>Device Type: "'+ VIDEO[i].deviceType +'"</strong><br /><div class="text-center"><strong>Title Name: "'+ VIDEO[i].titleName +'"</strong><br /><strong><span class="longDateFormat">'+VIDEO[i].datePublished+'</strong></span><br /><video class="center" width="800" height="600" controls video src="'+VIDEO[i].gameClipUris[0].uri+'" controls></video></div></div>');
+          }
+        }
+      }
+    }
+});
+
+</script>
+<script src="/timeDate.js">
+</script>
+</body>
+</html>
